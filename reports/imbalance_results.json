@@ -1,0 +1,435 @@
+{
+  "data": {
+    "rows": 283726,
+    "fraud": 473
+  },
+  "ratio_after_sampling": 0.1,
+  "summary": [
+    {
+      "method": "처리 없음",
+      "pr_auc_mean": 0.8496,
+      "pr_auc_std": 0.0127,
+      "precision_at_recall80_mean": 0.9167,
+      "precision_at_recall80_std": 0.0847,
+      "recall_at_0.5_mean": 0.7843,
+      "recall_at_0.5_std": 0.0297,
+      "false_alarms_at_0.5_mean": 3.2,
+      "false_alarms_at_0.5_std": 1.7889,
+      "seconds_mean": 2.0,
+      "seconds_std": 0.1
+    },
+    {
+      "method": "클래스 가중치",
+      "pr_auc_mean": 0.4352,
+      "pr_auc_std": 0.2049,
+      "precision_at_recall80_mean": 0.2129,
+      "precision_at_recall80_std": 0.1924,
+      "recall_at_0.5_mean": 0.7379,
+      "recall_at_0.5_std": 0.0536,
+      "false_alarms_at_0.5_mean": 122.0,
+      "false_alarms_at_0.5_std": 100.5858,
+      "seconds_mean": 2.5,
+      "seconds_std": 0.1581
+    },
+    {
+      "method": "언더샘플링 1:10",
+      "pr_auc_mean": 0.7672,
+      "pr_auc_std": 0.0548,
+      "precision_at_recall80_mean": 0.8367,
+      "precision_at_recall80_std": 0.0361,
+      "recall_at_0.5_mean": 0.8541,
+      "recall_at_0.5_std": 0.0278,
+      "false_alarms_at_0.5_mean": 87.0,
+      "false_alarms_at_0.5_std": 11.4237,
+      "seconds_mean": 0.2,
+      "seconds_std": 0.0
+    },
+    {
+      "method": "SMOTE 1:10",
+      "pr_auc_mean": 0.8511,
+      "pr_auc_std": 0.0171,
+      "precision_at_recall80_mean": 0.9101,
+      "precision_at_recall80_std": 0.0444,
+      "recall_at_0.5_mean": 0.8329,
+      "recall_at_0.5_std": 0.0224,
+      "false_alarms_at_0.5_mean": 12.0,
+      "false_alarms_at_0.5_std": 2.4495,
+      "seconds_mean": 2.66,
+      "seconds_std": 0.2191
+    }
+  ],
+  "paired_vs_none": {
+    "pr_auc": {
+      "클래스 가중치": {
+        "mean_diff": -0.4145,
+        "std_diff": 0.2006,
+        "wins_vs_none": 0,
+        "per_fold": [
+          -0.2635,
+          -0.6511,
+          -0.6163,
+          -0.2618,
+          -0.2796
+        ]
+      },
+      "언더샘플링 1:10": {
+        "mean_diff": -0.0824,
+        "std_diff": 0.0487,
+        "wins_vs_none": 0,
+        "per_fold": [
+          -0.0584,
+          -0.0189,
+          -0.1277,
+          -0.1347,
+          -0.0723
+        ]
+      },
+      "SMOTE 1:10": {
+        "mean_diff": 0.0015,
+        "std_diff": 0.007,
+        "wins_vs_none": 4,
+        "per_fold": [
+          0.0051,
+          0.0085,
+          -0.01,
+          0.001,
+          0.0028
+        ]
+      }
+    },
+    "precision_at_recall80": {
+      "클래스 가중치": {
+        "mean_diff": -0.7038,
+        "std_diff": 0.1864,
+        "wins_vs_none": 0,
+        "per_fold": [
+          -0.4431,
+          -0.7906,
+          -0.7075,
+          -0.6325,
+          -0.9454
+        ]
+      },
+      "언더샘플링 1:10": {
+        "mean_diff": -0.08,
+        "std_diff": 0.0839,
+        "wins_vs_none": 1,
+        "per_fold": [
+          -0.0457,
+          -0.1625,
+          0.0495,
+          -0.1129,
+          -0.1285
+        ]
+      },
+      "SMOTE 1:10": {
+        "mean_diff": -0.0067,
+        "std_diff": 0.044,
+        "wins_vs_none": 1,
+        "per_fold": [
+          0.0,
+          -0.0339,
+          0.0675,
+          -0.0342,
+          -0.0328
+        ]
+      }
+    }
+  },
+  "overall_out_of_fold": {
+    "처리 없음": {
+      "pr_auc": 0.8486,
+      "precision_at_recall80": 0.9455,
+      "test_fraud": 473,
+      "caught_at_0.5": 371,
+      "false_alarms_at_0.5": 16,
+      "recall_at_0.5": 0.7844
+    },
+    "클래스 가중치": {
+      "pr_auc": 0.2889,
+      "precision_at_recall80": 0.1224,
+      "test_fraud": 473,
+      "caught_at_0.5": 349,
+      "false_alarms_at_0.5": 610,
+      "recall_at_0.5": 0.7378
+    },
+    "언더샘플링 1:10": {
+      "pr_auc": 0.7527,
+      "precision_at_recall80": 0.833,
+      "test_fraud": 473,
+      "caught_at_0.5": 404,
+      "false_alarms_at_0.5": 435,
+      "recall_at_0.5": 0.8541
+    },
+    "SMOTE 1:10": {
+      "pr_auc": 0.851,
+      "precision_at_recall80": 0.9201,
+      "test_fraud": 473,
+      "caught_at_0.5": 394,
+      "false_alarms_at_0.5": 60,
+      "recall_at_0.5": 0.833
+    }
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "method": "처리 없음",
+      "pr_auc": 0.8428,
+      "precision_at_recall80": 0.9398,
+      "test_fraud": 95,
+      "caught_at_0.5": 78,
+      "false_alarms_at_0.5": 5,
+      "recall_at_0.5": 0.8211,
+      "train_rows": 226980,
+      "train_fraud": 378,
+      "seconds": 1.9
+    },
+    {
+      "fold": 0,
+      "method": "클래스 가중치",
+      "pr_auc": 0.5793,
+      "precision_at_recall80": 0.4967,
+      "test_fraud": 95,
+      "caught_at_0.5": 75,
+      "false_alarms_at_0.5": 75,
+      "recall_at_0.5": 0.7895,
+      "train_rows": 226980,
+      "train_fraud": 378,
+      "seconds": 2.3
+    },
+    {
+      "fold": 0,
+      "method": "언더샘플링 1:10",
+      "pr_auc": 0.7844,
+      "precision_at_recall80": 0.8941,
+      "test_fraud": 95,
+      "caught_at_0.5": 82,
+      "false_alarms_at_0.5": 84,
+      "recall_at_0.5": 0.8632,
+      "train_rows": 4158,
+      "train_fraud": 378,
+      "seconds": 0.2
+    },
+    {
+      "fold": 0,
+      "method": "SMOTE 1:10",
+      "pr_auc": 0.8479,
+      "precision_at_recall80": 0.9398,
+      "test_fraud": 95,
+      "caught_at_0.5": 81,
+      "false_alarms_at_0.5": 11,
+      "recall_at_0.5": 0.8526,
+      "train_rows": 249262,
+      "train_fraud": 22660,
+      "seconds": 2.7
+    },
+    {
+      "fold": 1,
+      "method": "처리 없음",
+      "pr_auc": 0.8518,
+      "precision_at_recall80": 0.9625,
+      "test_fraud": 94,
+      "caught_at_0.5": 72,
+      "false_alarms_at_0.5": 2,
+      "recall_at_0.5": 0.766,
+      "train_rows": 226981,
+      "train_fraud": 379,
+      "seconds": 2.1
+    },
+    {
+      "fold": 1,
+      "method": "클래스 가중치",
+      "pr_auc": 0.2007,
+      "precision_at_recall80": 0.1719,
+      "test_fraud": 94,
+      "caught_at_0.5": 75,
+      "false_alarms_at_0.5": 263,
+      "recall_at_0.5": 0.7979,
+      "train_rows": 226981,
+      "train_fraud": 379,
+      "seconds": 2.7
+    },
+    {
+      "fold": 1,
+      "method": "언더샘플링 1:10",
+      "pr_auc": 0.8329,
+      "precision_at_recall80": 0.8,
+      "test_fraud": 94,
+      "caught_at_0.5": 83,
+      "false_alarms_at_0.5": 75,
+      "recall_at_0.5": 0.883,
+      "train_rows": 4169,
+      "train_fraud": 379,
+      "seconds": 0.2
+    },
+    {
+      "fold": 1,
+      "method": "SMOTE 1:10",
+      "pr_auc": 0.8603,
+      "precision_at_recall80": 0.9286,
+      "test_fraud": 94,
+      "caught_at_0.5": 78,
+      "false_alarms_at_0.5": 11,
+      "recall_at_0.5": 0.8298,
+      "train_rows": 249262,
+      "train_fraud": 22660,
+      "seconds": 2.6
+    },
+    {
+      "fold": 2,
+      "method": "처리 없음",
+      "pr_auc": 0.8373,
+      "precision_at_recall80": 0.7677,
+      "test_fraud": 94,
+      "caught_at_0.5": 70,
+      "false_alarms_at_0.5": 3,
+      "recall_at_0.5": 0.7447,
+      "train_rows": 226981,
+      "train_fraud": 379,
+      "seconds": 2.1
+    },
+    {
+      "fold": 2,
+      "method": "클래스 가중치",
+      "pr_auc": 0.221,
+      "precision_at_recall80": 0.0602,
+      "test_fraud": 94,
+      "caught_at_0.5": 67,
+      "false_alarms_at_0.5": 192,
+      "recall_at_0.5": 0.7128,
+      "train_rows": 226981,
+      "train_fraud": 379,
+      "seconds": 2.4
+    },
+    {
+      "fold": 2,
+      "method": "언더샘플링 1:10",
+      "pr_auc": 0.7096,
+      "precision_at_recall80": 0.8172,
+      "test_fraud": 94,
+      "caught_at_0.5": 76,
+      "false_alarms_at_0.5": 78,
+      "recall_at_0.5": 0.8085,
+      "train_rows": 4169,
+      "train_fraud": 379,
+      "seconds": 0.2
+    },
+    {
+      "fold": 2,
+      "method": "SMOTE 1:10",
+      "pr_auc": 0.8273,
+      "precision_at_recall80": 0.8352,
+      "test_fraud": 94,
+      "caught_at_0.5": 75,
+      "false_alarms_at_0.5": 15,
+      "recall_at_0.5": 0.7979,
+      "train_rows": 249262,
+      "train_fraud": 22660,
+      "seconds": 2.4
+    },
+    {
+      "fold": 3,
+      "method": "처리 없음",
+      "pr_auc": 0.8459,
+      "precision_at_recall80": 0.939,
+      "test_fraud": 95,
+      "caught_at_0.5": 76,
+      "false_alarms_at_0.5": 5,
+      "recall_at_0.5": 0.8,
+      "train_rows": 226981,
+      "train_fraud": 378,
+      "seconds": 1.9
+    },
+    {
+      "fold": 3,
+      "method": "클래스 가중치",
+      "pr_auc": 0.5841,
+      "precision_at_recall80": 0.3065,
+      "test_fraud": 95,
+      "caught_at_0.5": 68,
+      "false_alarms_at_0.5": 36,
+      "recall_at_0.5": 0.7158,
+      "train_rows": 226981,
+      "train_fraud": 378,
+      "seconds": 2.6
+    },
+    {
+      "fold": 3,
+      "method": "언더샘플링 1:10",
+      "pr_auc": 0.7112,
+      "precision_at_recall80": 0.8261,
+      "test_fraud": 95,
+      "caught_at_0.5": 81,
+      "false_alarms_at_0.5": 99,
+      "recall_at_0.5": 0.8526,
+      "train_rows": 4158,
+      "train_fraud": 378,
+      "seconds": 0.2
+    },
+    {
+      "fold": 3,
+      "method": "SMOTE 1:10",
+      "pr_auc": 0.8469,
+      "precision_at_recall80": 0.9048,
+      "test_fraud": 95,
+      "caught_at_0.5": 79,
+      "false_alarms_at_0.5": 14,
+      "recall_at_0.5": 0.8316,
+      "train_rows": 249263,
+      "train_fraud": 22660,
+      "seconds": 2.6
+    },
+    {
+      "fold": 4,
+      "method": "처리 없음",
+      "pr_auc": 0.8703,
+      "precision_at_recall80": 0.9747,
+      "test_fraud": 95,
+      "caught_at_0.5": 75,
+      "false_alarms_at_0.5": 1,
+      "recall_at_0.5": 0.7895,
+      "train_rows": 226981,
+      "train_fraud": 378,
+      "seconds": 2.0
+    },
+    {
+      "fold": 4,
+      "method": "클래스 가중치",
+      "pr_auc": 0.5907,
+      "precision_at_recall80": 0.0293,
+      "test_fraud": 95,
+      "caught_at_0.5": 64,
+      "false_alarms_at_0.5": 44,
+      "recall_at_0.5": 0.6737,
+      "train_rows": 226981,
+      "train_fraud": 378,
+      "seconds": 2.5
+    },
+    {
+      "fold": 4,
+      "method": "언더샘플링 1:10",
+      "pr_auc": 0.798,
+      "precision_at_recall80": 0.8462,
+      "test_fraud": 95,
+      "caught_at_0.5": 82,
+      "false_alarms_at_0.5": 99,
+      "recall_at_0.5": 0.8632,
+      "train_rows": 4158,
+      "train_fraud": 378,
+      "seconds": 0.2
+    },
+    {
+      "fold": 4,
+      "method": "SMOTE 1:10",
+      "pr_auc": 0.8731,
+      "precision_at_recall80": 0.9419,
+      "test_fraud": 95,
+      "caught_at_0.5": 81,
+      "false_alarms_at_0.5": 9,
+      "recall_at_0.5": 0.8526,
+      "train_rows": 249263,
+      "train_fraud": 22660,
+      "seconds": 3.0
+    }
+  ]
+}
