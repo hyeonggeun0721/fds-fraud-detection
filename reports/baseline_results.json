@@ -1,0 +1,43 @@
+{
+  "split": "stratified random 80/20, seed 42",
+  "test_size": 56962,
+  "test_fraud": 98,
+  "results": [
+    {
+      "model": "전부 '정상' 예측",
+      "accuracy_pct": 99.828,
+      "precision": 0.0,
+      "recall": 0.0,
+      "pr_auc": 0.002,
+      "roc_auc": 0.5,
+      "caught_fraud": 0,
+      "missed_fraud": 98,
+      "false_alarms": 0,
+      "precision_at_recall80": 0.002
+    },
+    {
+      "model": "로지스틱 회귀",
+      "accuracy_pct": 99.914,
+      "precision": 0.827,
+      "recall": 0.633,
+      "pr_auc": 0.741,
+      "roc_auc": 0.961,
+      "caught_fraud": 62,
+      "missed_fraud": 36,
+      "false_alarms": 13,
+      "precision_at_recall80": 0.684
+    },
+    {
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "accuracy_pct": 97.553,
+      "precision": 0.061,
+      "recall": 0.918,
+      "pr_auc": 0.719,
+      "roc_auc": 0.972,
+      "caught_fraud": 90,
+      "missed_fraud": 8,
+      "false_alarms": 1386,
+      "precision_at_recall80": 0.833
+    }
+  ]
+}

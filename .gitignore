@@ -1,0 +1,7 @@
+data_raw/
+*.csv
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+.DS_Store
+*.npz

@@ -1,0 +1,27 @@
+{
+  "rows": 284807,
+  "fraud": 492,
+  "fraud_rate_pct": 0.1727,
+  "missing_values": 0,
+  "duplicate_rows": 1081,
+  "time_span_hours": 48.0,
+  "amount": {
+    "normal_median": 22.0,
+    "fraud_median": 9.25,
+    "normal_mean": 88.29,
+    "fraud_mean": 122.21,
+    "fraud_max": 2125.87,
+    "fraud_amount_zero": 27
+  },
+  "top_separating_features": {
+    "V17": 7.86,
+    "V14": 7.29,
+    "V12": 6.28,
+    "V10": 5.22,
+    "V16": 4.73,
+    "V3": 4.65,
+    "V7": 4.51,
+    "V11": 3.73
+  },
+  "all_normal_baseline_accuracy_pct": 99.827
+}
