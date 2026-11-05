@@ -1,0 +1,215 @@
+{
+  "data": {
+    "rows": 283726,
+    "fraud": 473
+  },
+  "if_params": {
+    "n_estimators": 200,
+    "max_samples": 256,
+    "random_state": 0
+  },
+  "summary": [
+    {
+      "method": "Isolation Forest (비지도)",
+      "pr_auc_mean": 0.1391,
+      "pr_auc_std": 0.0348,
+      "precision_at_recall80_mean": 0.048,
+      "precision_at_recall80_std": 0.012,
+      "top_k_hits_mean": 23.0,
+      "top_k_hits_std": 3.3912,
+      "seconds_mean": 0.5,
+      "seconds_std": 0.0
+    },
+    {
+      "method": "Isolation Forest (정상만)",
+      "pr_auc_mean": 0.1101,
+      "pr_auc_std": 0.0217,
+      "precision_at_recall80_mean": 0.0464,
+      "precision_at_recall80_std": 0.0087,
+      "top_k_hits_mean": 18.8,
+      "top_k_hits_std": 1.7889,
+      "seconds_mean": 0.5,
+      "seconds_std": 0.0
+    },
+    {
+      "method": "LightGBM (지도)",
+      "pr_auc_mean": 0.8496,
+      "pr_auc_std": 0.0127,
+      "precision_at_recall80_mean": 0.9167,
+      "precision_at_recall80_std": 0.0847,
+      "top_k_hits_mean": 79.2,
+      "top_k_hits_std": 2.6833,
+      "seconds_mean": 2.24,
+      "seconds_std": 0.3362
+    }
+  ],
+  "paired_pr_auc_vs_lightgbm": {
+    "Isolation Forest (비지도)": {
+      "mean_diff": -0.7105,
+      "std_diff": 0.0359,
+      "wins_vs_lightgbm": 0
+    },
+    "Isolation Forest (정상만)": {
+      "mean_diff": -0.7395,
+      "std_diff": 0.0235,
+      "wins_vs_lightgbm": 0
+    }
+  },
+  "overall_out_of_fold": {
+    "Isolation Forest (비지도)": {
+      "pr_auc": 0.1283,
+      "precision_at_recall80": 0.044,
+      "test_fraud": 473,
+      "top_k_hits": 113
+    },
+    "Isolation Forest (정상만)": {
+      "pr_auc": 0.1021,
+      "precision_at_recall80": 0.0443,
+      "test_fraud": 473,
+      "top_k_hits": 94
+    },
+    "LightGBM (지도)": {
+      "pr_auc": 0.8486,
+      "precision_at_recall80": 0.9455,
+      "test_fraud": 473,
+      "top_k_hits": 396
+    }
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "method": "Isolation Forest (비지도)",
+      "pr_auc": 0.158,
+      "precision_at_recall80": 0.0681,
+      "test_fraud": 95,
+      "top_k_hits": 25,
+      "seconds": 0.5
+    },
+    {
+      "fold": 0,
+      "method": "Isolation Forest (정상만)",
+      "pr_auc": 0.1059,
+      "precision_at_recall80": 0.0463,
+      "test_fraud": 95,
+      "top_k_hits": 20,
+      "seconds": 0.5
+    },
+    {
+      "fold": 0,
+      "method": "LightGBM (지도)",
+      "pr_auc": 0.8428,
+      "precision_at_recall80": 0.9398,
+      "test_fraud": 95,
+      "top_k_hits": 82,
+      "seconds": 2.5
+    },
+    {
+      "fold": 1,
+      "method": "Isolation Forest (비지도)",
+      "pr_auc": 0.1271,
+      "precision_at_recall80": 0.0435,
+      "test_fraud": 94,
+      "top_k_hits": 19,
+      "seconds": 0.5
+    },
+    {
+      "fold": 1,
+      "method": "Isolation Forest (정상만)",
+      "pr_auc": 0.1014,
+      "precision_at_recall80": 0.0344,
+      "test_fraud": 94,
+      "top_k_hits": 17,
+      "seconds": 0.5
+    },
+    {
+      "fold": 1,
+      "method": "LightGBM (지도)",
+      "pr_auc": 0.8518,
+      "precision_at_recall80": 0.9625,
+      "test_fraud": 94,
+      "top_k_hits": 79,
+      "seconds": 2.7
+    },
+    {
+      "fold": 2,
+      "method": "Isolation Forest (비지도)",
+      "pr_auc": 0.0914,
+      "precision_at_recall80": 0.0399,
+      "test_fraud": 94,
+      "top_k_hits": 20,
+      "seconds": 0.5
+    },
+    {
+      "fold": 2,
+      "method": "Isolation Forest (정상만)",
+      "pr_auc": 0.0872,
+      "precision_at_recall80": 0.0441,
+      "test_fraud": 94,
+      "top_k_hits": 17,
+      "seconds": 0.5
+    },
+    {
+      "fold": 2,
+      "method": "LightGBM (지도)",
+      "pr_auc": 0.8373,
+      "precision_at_recall80": 0.7677,
+      "test_fraud": 94,
+      "top_k_hits": 75,
+      "seconds": 2.0
+    },
+    {
+      "fold": 3,
+      "method": "Isolation Forest (비지도)",
+      "pr_auc": 0.1844,
+      "precision_at_recall80": 0.0495,
+      "test_fraud": 95,
+      "top_k_hits": 27,
+      "seconds": 0.5
+    },
+    {
+      "fold": 3,
+      "method": "Isolation Forest (정상만)",
+      "pr_auc": 0.1457,
+      "precision_at_recall80": 0.0585,
+      "test_fraud": 95,
+      "top_k_hits": 19,
+      "seconds": 0.5
+    },
+    {
+      "fold": 3,
+      "method": "LightGBM (지도)",
+      "pr_auc": 0.8459,
+      "precision_at_recall80": 0.939,
+      "test_fraud": 95,
+      "top_k_hits": 79,
+      "seconds": 2.0
+    },
+    {
+      "fold": 4,
+      "method": "Isolation Forest (비지도)",
+      "pr_auc": 0.1348,
+      "precision_at_recall80": 0.0389,
+      "test_fraud": 95,
+      "top_k_hits": 24,
+      "seconds": 0.5
+    },
+    {
+      "fold": 4,
+      "method": "Isolation Forest (정상만)",
+      "pr_auc": 0.1102,
+      "precision_at_recall80": 0.0488,
+      "test_fraud": 95,
+      "top_k_hits": 21,
+      "seconds": 0.5
+    },
+    {
+      "fold": 4,
+      "method": "LightGBM (지도)",
+      "pr_auc": 0.8703,
+      "precision_at_recall80": 0.9747,
+      "test_fraud": 95,
+      "top_k_hits": 81,
+      "seconds": 2.0
+    }
+  ]
+}
