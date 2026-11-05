@@ -1,0 +1,386 @@
+{
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "summary": [
+    {
+      "data": "중복 유지",
+      "model": "로지스틱 회귀",
+      "pr_auc_mean": 0.776,
+      "pr_auc_std": 0.03,
+      "pr_auc_min": 0.721,
+      "pr_auc_max": 0.817,
+      "precision_at_recall80_mean": 0.764,
+      "precision_at_recall80_std": 0.082,
+      "precision_at_recall80_min": 0.585,
+      "precision_at_recall80_max": 0.859
+    },
+    {
+      "data": "중복 유지",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "pr_auc_mean": 0.752,
+      "pr_auc_std": 0.03,
+      "pr_auc_min": 0.707,
+      "pr_auc_max": 0.806,
+      "precision_at_recall80_mean": 0.789,
+      "precision_at_recall80_std": 0.105,
+      "precision_at_recall80_min": 0.564,
+      "precision_at_recall80_max": 0.889
+    },
+    {
+      "data": "중복 제거",
+      "model": "로지스틱 회귀",
+      "pr_auc_mean": 0.753,
+      "pr_auc_std": 0.044,
+      "pr_auc_min": 0.689,
+      "pr_auc_max": 0.835,
+      "precision_at_recall80_mean": 0.728,
+      "precision_at_recall80_std": 0.094,
+      "precision_at_recall80_min": 0.539,
+      "precision_at_recall80_max": 0.885
+    },
+    {
+      "data": "중복 제거",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "pr_auc_mean": 0.731,
+      "pr_auc_std": 0.057,
+      "pr_auc_min": 0.662,
+      "pr_auc_max": 0.823,
+      "precision_at_recall80_mean": 0.693,
+      "precision_at_recall80_std": 0.218,
+      "precision_at_recall80_min": 0.211,
+      "precision_at_recall80_max": 0.927
+    }
+  ],
+  "runs": [
+    {
+      "data": "중복 유지",
+      "model": "로지스틱 회귀",
+      "seed": 0,
+      "pr_auc": 0.7214,
+      "precision_at_recall80": 0.7248,
+      "test_fraud": 98
+    },
+    {
+      "data": "중복 유지",
+      "model": "로지스틱 회귀",
+      "seed": 1,
+      "pr_auc": 0.8154,
+      "precision_at_recall80": 0.8182,
+      "test_fraud": 98
+    },
+    {
+      "data": "중복 유지",
+      "model": "로지스틱 회귀",
+      "seed": 2,
+      "pr_auc": 0.8172,
+      "precision_at_recall80": 0.8511,
+      "test_fraud": 98
+    },
+    {
+      "data": "중복 유지",
+      "model": "로지스틱 회귀",
+      "seed": 3,
+      "pr_auc": 0.7545,
+      "precision_at_recall80": 0.767,
+      "test_fraud": 98
+    },
+    {
+      "data": "중복 유지",
+      "model": "로지스틱 회귀",
+      "seed": 4,
+      "pr_auc": 0.7568,
+      "precision_at_recall80": 0.7767,
+      "test_fraud": 98
+    },
+    {
+      "data": "중복 유지",
+      "model": "로지스틱 회귀",
+      "seed": 5,
+      "pr_auc": 0.7842,
+      "precision_at_recall80": 0.8587,
+      "test_fraud": 98
+    },
+    {
+      "data": "중복 유지",
+      "model": "로지스틱 회귀",
+      "seed": 6,
+      "pr_auc": 0.7563,
+      "precision_at_recall80": 0.5852,
+      "test_fraud": 98
+    },
+    {
+      "data": "중복 유지",
+      "model": "로지스틱 회귀",
+      "seed": 7,
+      "pr_auc": 0.7836,
+      "precision_at_recall80": 0.7248,
+      "test_fraud": 98
+    },
+    {
+      "data": "중복 유지",
+      "model": "로지스틱 회귀",
+      "seed": 8,
+      "pr_auc": 0.7699,
+      "precision_at_recall80": 0.8229,
+      "test_fraud": 98
+    },
+    {
+      "data": "중복 유지",
+      "model": "로지스틱 회귀",
+      "seed": 9,
+      "pr_auc": 0.7958,
+      "precision_at_recall80": 0.7117,
+      "test_fraud": 98
+    },
+    {
+      "data": "중복 유지",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "seed": 0,
+      "pr_auc": 0.7067,
+      "precision_at_recall80": 0.7018,
+      "test_fraud": 98
+    },
+    {
+      "data": "중복 유지",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "seed": 1,
+      "pr_auc": 0.8059,
+      "precision_at_recall80": 0.8889,
+      "test_fraud": 98
+    },
+    {
+      "data": "중복 유지",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "seed": 2,
+      "pr_auc": 0.7576,
+      "precision_at_recall80": 0.8876,
+      "test_fraud": 98
+    },
+    {
+      "data": "중복 유지",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "seed": 3,
+      "pr_auc": 0.7362,
+      "precision_at_recall80": 0.8876,
+      "test_fraud": 98
+    },
+    {
+      "data": "중복 유지",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "seed": 4,
+      "pr_auc": 0.7186,
+      "precision_at_recall80": 0.79,
+      "test_fraud": 98
+    },
+    {
+      "data": "중복 유지",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "seed": 5,
+      "pr_auc": 0.7502,
+      "precision_at_recall80": 0.8404,
+      "test_fraud": 98
+    },
+    {
+      "data": "중복 유지",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "seed": 6,
+      "pr_auc": 0.7539,
+      "precision_at_recall80": 0.5643,
+      "test_fraud": 98
+    },
+    {
+      "data": "중복 유지",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "seed": 7,
+      "pr_auc": 0.7519,
+      "precision_at_recall80": 0.7054,
+      "test_fraud": 98
+    },
+    {
+      "data": "중복 유지",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "seed": 8,
+      "pr_auc": 0.7424,
+      "precision_at_recall80": 0.8404,
+      "test_fraud": 98
+    },
+    {
+      "data": "중복 유지",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "seed": 9,
+      "pr_auc": 0.7924,
+      "precision_at_recall80": 0.7822,
+      "test_fraud": 98
+    },
+    {
+      "data": "중복 제거",
+      "model": "로지스틱 회귀",
+      "seed": 0,
+      "pr_auc": 0.7909,
+      "precision_at_recall80": 0.76,
+      "test_fraud": 95
+    },
+    {
+      "data": "중복 제거",
+      "model": "로지스틱 회귀",
+      "seed": 1,
+      "pr_auc": 0.7144,
+      "precision_at_recall80": 0.539,
+      "test_fraud": 95
+    },
+    {
+      "data": "중복 제거",
+      "model": "로지스틱 회귀",
+      "seed": 2,
+      "pr_auc": 0.7185,
+      "precision_at_recall80": 0.7404,
+      "test_fraud": 95
+    },
+    {
+      "data": "중복 제거",
+      "model": "로지스틱 회귀",
+      "seed": 3,
+      "pr_auc": 0.6891,
+      "precision_at_recall80": 0.6609,
+      "test_fraud": 95
+    },
+    {
+      "data": "중복 제거",
+      "model": "로지스틱 회귀",
+      "seed": 4,
+      "pr_auc": 0.7444,
+      "precision_at_recall80": 0.7238,
+      "test_fraud": 95
+    },
+    {
+      "data": "중복 제거",
+      "model": "로지스틱 회귀",
+      "seed": 5,
+      "pr_auc": 0.7345,
+      "precision_at_recall80": 0.717,
+      "test_fraud": 95
+    },
+    {
+      "data": "중복 제거",
+      "model": "로지스틱 회귀",
+      "seed": 6,
+      "pr_auc": 0.777,
+      "precision_at_recall80": 0.6909,
+      "test_fraud": 95
+    },
+    {
+      "data": "중복 제거",
+      "model": "로지스틱 회귀",
+      "seed": 7,
+      "pr_auc": 0.7917,
+      "precision_at_recall80": 0.837,
+      "test_fraud": 95
+    },
+    {
+      "data": "중복 제거",
+      "model": "로지스틱 회귀",
+      "seed": 8,
+      "pr_auc": 0.7363,
+      "precision_at_recall80": 0.7308,
+      "test_fraud": 95
+    },
+    {
+      "data": "중복 제거",
+      "model": "로지스틱 회귀",
+      "seed": 9,
+      "pr_auc": 0.835,
+      "precision_at_recall80": 0.8851,
+      "test_fraud": 95
+    },
+    {
+      "data": "중복 제거",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "seed": 0,
+      "pr_auc": 0.7868,
+      "precision_at_recall80": 0.8941,
+      "test_fraud": 95
+    },
+    {
+      "data": "중복 제거",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "seed": 1,
+      "pr_auc": 0.6719,
+      "precision_at_recall80": 0.2105,
+      "test_fraud": 95
+    },
+    {
+      "data": "중복 제거",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "seed": 2,
+      "pr_auc": 0.6931,
+      "precision_at_recall80": 0.6281,
+      "test_fraud": 95
+    },
+    {
+      "data": "중복 제거",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "seed": 3,
+      "pr_auc": 0.6625,
+      "precision_at_recall80": 0.5802,
+      "test_fraud": 95
+    },
+    {
+      "data": "중복 제거",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "seed": 4,
+      "pr_auc": 0.7262,
+      "precision_at_recall80": 0.7917,
+      "test_fraud": 95
+    },
+    {
+      "data": "중복 제거",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "seed": 5,
+      "pr_auc": 0.6643,
+      "precision_at_recall80": 0.5352,
+      "test_fraud": 95
+    },
+    {
+      "data": "중복 제거",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "seed": 6,
+      "pr_auc": 0.7695,
+      "precision_at_recall80": 0.8085,
+      "test_fraud": 95
+    },
+    {
+      "data": "중복 제거",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "seed": 7,
+      "pr_auc": 0.7738,
+      "precision_at_recall80": 0.8837,
+      "test_fraud": 95
+    },
+    {
+      "data": "중복 제거",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "seed": 8,
+      "pr_auc": 0.7416,
+      "precision_at_recall80": 0.6754,
+      "test_fraud": 95
+    },
+    {
+      "data": "중복 제거",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "seed": 9,
+      "pr_auc": 0.823,
+      "precision_at_recall80": 0.9268,
+      "test_fraud": 95
+    }
+  ]
+}

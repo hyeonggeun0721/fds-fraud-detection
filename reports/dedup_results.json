@@ -1,0 +1,46 @@
+{
+  "duplicates": {
+    "extra_copies": 1081,
+    "extra_copies_fraud": 19,
+    "rows_in_duplicate_groups": 1854,
+    "label_conflict_groups": 0
+  },
+  "leakage": {
+    "test_rows_with_copy_in_train": 344,
+    "of_which_fraud": 8
+  },
+  "comparison": [
+    {
+      "data": "중복 유지(1단계 방식)",
+      "model": "로지스틱 회귀",
+      "pr_auc": 0.741,
+      "precision_at_recall80": 0.684,
+      "test_rows": 56962,
+      "test_fraud": 98
+    },
+    {
+      "data": "중복 유지(1단계 방식)",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "pr_auc": 0.719,
+      "precision_at_recall80": 0.833,
+      "test_rows": 56962,
+      "test_fraud": 98
+    },
+    {
+      "data": "중복 제거 후 분할",
+      "model": "로지스틱 회귀",
+      "pr_auc": 0.692,
+      "precision_at_recall80": 0.418,
+      "test_rows": 56746,
+      "test_fraud": 95
+    },
+    {
+      "data": "중복 제거 후 분할",
+      "model": "로지스틱 회귀 + 클래스 가중치",
+      "pr_auc": 0.672,
+      "precision_at_recall80": 0.45,
+      "test_rows": 56746,
+      "test_fraud": 95
+    }
+  ]
+}
