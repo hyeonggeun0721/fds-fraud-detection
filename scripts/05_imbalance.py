@@ -24,8 +24,8 @@ from lightgbm import LGBMClassifier
 
 from fds_common import LGBM_PARAMS, cv_folds, evaluate, load_data
 
-# imbalanced-learn 0.12.4(Python 3.9용 마지막 버전)가 scikit-learn 1.6의 옛 기능을 써서 나는
-# '곧 바뀔 기능' 경고(FutureWarning, DeprecationWarning). 지금 결과와는 무관해서 scikit-learn에서 오는 것만 숨긴다.
+# (2026-11-04) imbalanced-learn 0.12.4 + scikit-learn 1.6 조합에서 나던 '곧 바뀔 기능' 경고를 숨기던 설정.
+# Python 3.12 환경(imbalanced-learn 0.14.2 + scikit-learn 1.9.1)에서는 경고가 나지 않지만, 옛 환경 재현을 위해 남겨 둠.
 warnings.filterwarnings("ignore", category=FutureWarning, module=r"sklearn\.")
 warnings.filterwarnings("ignore", category=DeprecationWarning, module=r"sklearn\.")
 

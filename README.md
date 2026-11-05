@@ -37,6 +37,7 @@
 | 2-3 | 불균형 처리(가중치·언더샘플링·SMOTE)가 도움이 되나? | 순위(PR-AUC)는 개선 없음(SMOTE ≈ 처리 없음, 언더샘플링 하락, 가중치는 점수 폭주). 대신 점수 크기를 크게 바꿈 → 처리 없음 채택 | 08, 09 |
 | 2-4 | 기준점은 어떻게 정하나? 새 데이터에서도 지켜지나? | 학습 조각만으로 고른 기준점은 목표를 평균적으로 지키지만 조각별로 3/5만 달성 | 10 |
 | 2-4 보완 | 여유를 두면? | 재현율 85%로 고르면 15/15 지키지만 오경보 10.4배('절벽'), 오경보 예산은 완만한 맞교환 | 11 |
+| 3-1 | 라벨 없이(Isolation Forest) 사기를 찾을 수 있나? | PR-AUC 0.139(무작위의 약 80배)지만 LightGBM 0.850에 크게 못 미침. 고액 정상 거래를 '이상'으로 잡음(특이함 ≠ 사기) | 12 |
 
 ## 문제 해결 기록
 
@@ -47,13 +48,14 @@
 
 ## 실행
 
-FDS 전용 가상환경에서 실행합니다 (다른 파이썬 환경의 라이브러리를 바꾸지 않도록).
+FDS 전용 가상환경(애플 실리콘용 Python 3.12)에서 실행합니다. 다른 파이썬 환경의 라이브러리를 바꾸지 않도록 분리했습니다.
 
 ```bash
+brew install python@3.12 libomp                  # 처음 한 번만 (libomp는 LightGBM에 필요)
 cd ~/fds
-python -m venv .venv            # 처음 한 번만
-source .venv/bin/activate       # 터미널을 열 때마다
-pip install -r requirements.txt # 처음 한 번만 (lightgbm은 맥에서 libomp 필요)
+/opt/homebrew/bin/python3.12 -m venv .venv        # 처음 한 번만
+source .venv/bin/activate                         # 터미널을 열 때마다
+pip install -r requirements.txt                   # 처음 한 번만
 # 데이터: Kaggle "Credit Card Fraud Detection"의 creditcard.csv를 data_raw/에 둔다
 
 python scripts/01_eda.py              data_raw/creditcard.csv reports   # 1단계 탐색
@@ -63,17 +65,20 @@ python scripts/03b_seed_stability.py  data_raw/creditcard.csv reports   # 2-1 �
 python scripts/04_tree_model.py       data_raw/creditcard.csv reports   # 2-2 LightGBM
 python scripts/05_imbalance.py        data_raw/creditcard.csv reports   # 2-3 불균형 처리
 python scripts/06_threshold.py        data_raw/creditcard.csv reports   # 2-4 기준점
-python scripts/06b_threshold_margin.py data_raw/creditcard.csv reports  # 2-4 보완 (약 7분)
+python scripts/06b_threshold_margin.py data_raw/creditcard.csv reports  # 2-4 보완 (약 6분)
+python scripts/07_isolation_forest.py data_raw/creditcard.csv reports   # 3-1 Isolation Forest
 ```
 
 그래프는 결과 JSON으로 다시 그릴 수 있습니다: `python scripts/plot_tree_model.py reports` 등 `plot_*.py`.
+환경을 바꾼 뒤 결과가 그대로인지는 `python scripts/compare_results.py reports <새 결과 폴더>`로 비교합니다.
 
 ## 구조
 
 ```
 scripts/
   fds_common.py        데이터 로드(중복 제거), 5겹 분할, 지표, LightGBM 설정 — 2-2부터 공통 사용
-  01_ ~ 06b_*.py       단계별 실험
+  01_ ~ 07_*.py        단계별 실험
+  compare_results.py   두 결과 폴더 비교 (환경 변경 후 재현 확인)
   plot_*.py            결과 그래프
 reports/
   PROJECT_LOG.md       진행 기록 (현재 상태 + 날짜별 히스토리)
@@ -84,11 +89,12 @@ data_raw/              원본 데이터 (저장소에 포함하지 않음)
 
 ## 앞으로
 
-3. 비지도 이상탐지(Isolation Forest, 오토인코더)와 비교 — 라벨 없이 어디까지 잡히나
+3. 비지도 이상탐지 — 3-1 Isolation Forest 완료, 3-2 오토인코더(PyTorch) 진행 예정
 4. 시간 순서 분할 + 설명가능성(SHAP) — 과거로 학습해 미래를 예측할 때의 성능, 판단 근거 설명
 5. 보안 DB 프로젝트 연동 — 탐지 점수 적재, 알림·대시보드
 6. 적대적 공격(탐지 회피) 실험
 
 ## 환경
 
-Python 3.9 (macOS), `requirements.txt`의 고정 버전: numpy 2.0.2, pandas 2.3.3, scikit-learn 1.6.1, matplotlib 3.9.4, lightgbm 4.6.0, imbalanced-learn 0.12.4
+- macOS, 애플 실리콘(arm64) **Python 3.12** (Homebrew). `requirements.txt`의 고정 버전: numpy 2.5.4, pandas 3.1.1, scikit-learn 1.9.1, matplotlib 3.11.2, lightgbm 4.7.0, imbalanced-learn 0.14.2, torch 2.15.0
+- 2026-11-05에 인텔 호환 모드 Python 3.9 환경에서 옮겨 왔고, 1~3-1단계 전 스크립트를 다시 실행해 **기존 결과와 같음**을 확인했습니다(점수 폭주로 무효 처리한 2-3 클래스 가중치만 0.0003 차이)

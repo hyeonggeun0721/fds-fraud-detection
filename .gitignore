@@ -2,6 +2,7 @@ data_raw/
 *.csv
 __pycache__/
 .ipynb_checkpoints/
-.venv/
+.venv*/
 .DS_Store
 *.npz
+reports_check/
