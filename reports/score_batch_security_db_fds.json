@@ -1,0 +1,29 @@
+{
+  "db": "security_db_fds",
+  "run_id": 2,
+  "code_version": "203450b",
+  "train_blocks": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "score_blocks": [
+    4
+  ],
+  "threshold": 0.4368963442831683,
+  "batch": 5000,
+  "scoring_seconds": 5.5,
+  "eval": {
+    "n": 56746,
+    "fraud": 74,
+    "alerts": 56,
+    "true_alerts": 53,
+    "false_alerts": 3,
+    "recall": 0.7162,
+    "precision": 0.9464,
+    "pr_auc": 0.8065,
+    "precision_at_recall80": 0.6742,
+    "test_fraud": 74
+  }
+}
