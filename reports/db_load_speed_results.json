@@ -1,0 +1,26 @@
+{
+  "db": "fds_lab",
+  "speed_test": [
+    {
+      "method": "① INSERT 한 건씩 + 매번 COMMIT",
+      "rows": 20000,
+      "seconds": 0.595,
+      "rows_per_sec": 33616,
+      "estimated_full_seconds": 8.4
+    },
+    {
+      "method": "② INSERT 한 건씩 + COMMIT 한 번",
+      "rows": 20000,
+      "seconds": 0.515,
+      "rows_per_sec": 38814,
+      "estimated_full_seconds": 7.3
+    },
+    {
+      "method": "③ COPY",
+      "rows": 20000,
+      "seconds": 0.156,
+      "rows_per_sec": 127825,
+      "estimated_full_seconds": 2.2
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "db": "fds_lab",
+  "full_load": {
+    "rows": 283726,
+    "seconds": 4.46
+  },
+  "expected": {
+    "n": 283726,
+    "fraud": 473,
+    "amount_sum": 25102001.68
+  }
+}

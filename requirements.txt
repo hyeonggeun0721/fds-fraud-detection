@@ -9,3 +9,5 @@ lightgbm==4.7.0
 imbalanced-learn==0.14.2
 # 3-2단계부터 (오토인코더)
 torch==2.15.0
+# 5단계부터 (보안 DB 연동: PostgreSQL 접속). binary = libpq 포함 휠이라 별도 설치 불필요
+psycopg[binary]==3.3.6
