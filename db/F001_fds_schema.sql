@@ -1,11 +1,12 @@
 -- =============================================================================
 -- F001: FDS 전용 스키마 `fds` (5-1)
 --
--- 실행:  psql -d security_db -v ON_ERROR_STOP=1 -f db/F001_fds_schema.sql
--- 되돌리기: psql -d security_db -v ON_ERROR_STOP=1 -f db/F000_drop_fds.sql
+-- 실행:  psql -d security_db_fds -v ON_ERROR_STOP=1 -f db/F001_fds_schema.sql
+-- 되돌리기: psql -d security_db_fds -v ON_ERROR_STOP=1 -f db/F000_drop_fds.sql
 --
 -- 원칙 (2026-11-06 결정, 방식 A)
 --   - 보안 DB 과제(public 스키마, V001~V037)는 한 글자도 건드리지 않는다
+--   - 2026-11-06부터 대상 DB는 과제 원본(security_db)이 아니라 복제본 security_db_fds (원본 백업에 FDS 데이터가 섞이지 않게)
 --   - FDS 객체는 전부 `fds` 스키마 안에만 만든다 → 스키마째 지우면 흔적 없이 원상복구
 --   - 보안 이벤트·알림과의 연결(V038)은 과제 제출 뒤에 따로 한다
 --   - 전체를 한 트랜잭션으로 실행 → 중간에 하나라도 실패하면 아무것도 안 만들어짐

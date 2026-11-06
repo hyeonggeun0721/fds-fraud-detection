@@ -1,6 +1,6 @@
 """5-2: 배치 채점 — 과거(구간 0~3)로 학습한 모델이 '새로 들어온 거래'(구간 4)를 시간 순서대로 채점해 DB에 저장한다.
 
-사용법: python scripts/14_score_batch.py --db security_db
+사용법: python scripts/14_score_batch.py --db security_db_fds
         (실습 DB에서 시험해 보려면 --db fds_lab)
 
 역할을 접속 계정으로 나눈다 (최소권한)

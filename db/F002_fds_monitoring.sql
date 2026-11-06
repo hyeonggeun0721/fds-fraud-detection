@@ -1,7 +1,7 @@
 -- =============================================================================
 -- F002: 운영 뷰 + 기준점 모니터링 (5-2b)
 --
--- 실행:  psql -d security_db -v ON_ERROR_STOP=1 -f db/F002_fds_monitoring.sql
+-- 실행:  psql -d security_db_fds -v ON_ERROR_STOP=1 -f db/F002_fds_monitoring.sql
 --
 -- 만드는 것
 --   1) fds.vw_alert_queue        분석가용 경보 대기열 (라벨 없음 — 운영 화면)

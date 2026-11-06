@@ -92,13 +92,14 @@ python scripts/10b_labels_autoencoder.py data_raw/creditcard.csv reports # 3-3a 
 python scripts/11_time_split.py       data_raw/creditcard.csv reports   # 4-1 시간순 전진 검증 + 4-1b (약 2분)
 python scripts/12_shap.py             data_raw/creditcard.csv reports   # 4-2 SHAP (그래프용 shap_oof.npz도 저장)
 
-# 5단계: PostgreSQL 연동 (보안 DB 과제와 같은 서버, 별도 스키마 fds)
-psql -d security_db -v ON_ERROR_STOP=1 -f db/F001_fds_schema.sql      # 스키마·채점 계정
-python scripts/13_load_db.py data_raw/creditcard.csv --db security_db   # 거래·라벨 적재 (COPY + 검산)
-python scripts/14_score_batch.py --db security_db                       # 학습(구간 0~3) → 채점(구간 4) → 평가
-psql -d security_db -v ON_ERROR_STOP=1 -f db/F002_fds_monitoring.sql  # 경보 대기열·성능 뷰·기준점 점검
-psql -d security_db -c "select * from fds.threshold_check(0.8);"
-# 되돌리기: psql -d security_db -f db/F000_drop_fds.sql
+# 5단계: PostgreSQL 연동 (보안 DB 과제를 복제한 DB security_db_fds 안의 별도 스키마 fds)
+createdb security_db_fds && pg_dump -Fc -d security_db | pg_restore -d security_db_fds   # 과제 DB 복제 (처음 한 번)
+psql -d security_db_fds -v ON_ERROR_STOP=1 -f db/F001_fds_schema.sql      # 스키마·채점 계정
+python scripts/13_load_db.py data_raw/creditcard.csv --db security_db_fds   # 거래·라벨 적재 (COPY + 검산)
+python scripts/14_score_batch.py --db security_db_fds                       # 학습(구간 0~3) → 채점(구간 4) → 평가
+psql -d security_db_fds -v ON_ERROR_STOP=1 -f db/F002_fds_monitoring.sql  # 경보 대기열·성능 뷰·기준점 점검
+psql -d security_db_fds -c "select * from fds.threshold_check(0.8);"
+# 되돌리기: psql -d security_db_fds -f db/F000_drop_fds.sql
 ```
 
 그래프는 결과 JSON으로 다시 그릴 수 있습니다: `python scripts/plot_tree_model.py reports` 등 `plot_*.py`. (`plot_isolation_forest.py`·`plot_shap.py`는 두 번째 인자로 `data_raw/creditcard.csv`)
@@ -154,5 +155,5 @@ data_raw/              원본 데이터 (저장소에 포함하지 않음)
 ## 환경
 
 - macOS, 애플 실리콘(arm64) **Python 3.12** (Homebrew). `requirements.txt`의 고정 버전: numpy 2.5.4, pandas 3.1.1, scikit-learn 1.9.1, matplotlib 3.11.2, lightgbm 4.7.0, imbalanced-learn 0.14.2, torch 2.15.0, psycopg 3.3.6
-- PostgreSQL 15 (Homebrew). 5단계는 보안 DB 과제와 같은 서버의 `security_db`에 별도 스키마 `fds`로 두고 과제 테이블(public)은 건드리지 않음
+- PostgreSQL 15 (Homebrew). 5단계는 보안 DB 과제 DB를 복제한 `security_db_fds`에 별도 스키마 `fds`로 둠. 과제 원본(`security_db`)과 과제 저장소 main 브랜치는 건드리지 않고, 연동 코드는 과제 저장소의 `fds-integration` 브랜치(`~/security_db_fds` worktree)에서 작업
 - 2026-11-05에 인텔 호환 모드 Python 3.9 환경에서 옮겨 왔고, 그때까지의 1~3-1단계 스크립트를 다시 실행해 **기존 결과와 같음**을 확인했습니다(점수 폭주로 무효 처리한 2-3 클래스 가중치만 0.0003 차이)

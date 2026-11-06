@@ -1,7 +1,7 @@
 -- =============================================================================
 -- F000: FDS 스키마 완전 제거 (되돌리기용)
 --
--- 실행:  psql -d security_db -v ON_ERROR_STOP=1 -f db/F000_drop_fds.sql
+-- 실행:  psql -d security_db_fds -v ON_ERROR_STOP=1 -f db/F000_drop_fds.sql
 --
 -- fds 스키마 안의 모든 테이블·데이터와 채점 계정을 지운다.
 -- 보안 DB 과제(public 스키마)는 건드리지 않는다.

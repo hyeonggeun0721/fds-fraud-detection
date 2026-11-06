@@ -137,7 +137,7 @@ def speed_test(conn, txn_rows, n):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("csv_path")
-    ap.add_argument("--db", required=True, help="대상 DB 이름 (fds_lab 또는 security_db)")
+    ap.add_argument("--db", required=True, help="대상 DB 이름 (fds_lab 또는 security_db_fds)")
     ap.add_argument("--speed-test", type=int, default=0, metavar="N", help="실습: N건으로 적재 방법 3가지 속도 비교")
     args = ap.parse_args()
 
