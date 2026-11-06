@@ -1,0 +1,492 @@
+{
+  "model": "LightGBM (LGBM_PARAMS, Time 포함, 5겹)",
+  "method": "LightGBM pred_contrib (TreeSHAP), 원시 점수(log-odds) 단위",
+  "additivity_max_error": 4.884981308350689e-14,
+  "recall80_threshold_oof": 0.35818,
+  "folds": [
+    {
+      "fold": 0,
+      "pr_auc": 0.8428,
+      "precision_at_recall80": 0.9398,
+      "test_fraud": 95
+    },
+    {
+      "fold": 1,
+      "pr_auc": 0.8518,
+      "precision_at_recall80": 0.9625,
+      "test_fraud": 94
+    },
+    {
+      "fold": 2,
+      "pr_auc": 0.8373,
+      "precision_at_recall80": 0.7677,
+      "test_fraud": 94
+    },
+    {
+      "fold": 3,
+      "pr_auc": 0.8459,
+      "precision_at_recall80": 0.939,
+      "test_fraud": 95
+    },
+    {
+      "fold": 4,
+      "pr_auc": 0.8703,
+      "precision_at_recall80": 0.9747,
+      "test_fraud": 95
+    }
+  ],
+  "global": [
+    {
+      "feature": "V4",
+      "mean_abs_all": 0.59093,
+      "mean_abs_fraud": 2.06494,
+      "mean_fraud": 2.02721,
+      "mean_normal": -0.03275,
+      "rank": 1
+    },
+    {
+      "feature": "V14",
+      "mean_abs_all": 0.43266,
+      "mean_abs_fraud": 6.31328,
+      "mean_fraud": 6.27094,
+      "mean_normal": -0.02414,
+      "rank": 2
+    },
+    {
+      "feature": "V8",
+      "mean_abs_all": 0.28135,
+      "mean_abs_fraud": 0.45909,
+      "mean_fraud": -0.13486,
+      "mean_normal": -0.00507,
+      "rank": 3
+    },
+    {
+      "feature": "V12",
+      "mean_abs_all": 0.2428,
+      "mean_abs_fraud": 1.56758,
+      "mean_fraud": 1.53637,
+      "mean_normal": -0.00056,
+      "rank": 4
+    },
+    {
+      "feature": "Amount",
+      "mean_abs_all": 0.22694,
+      "mean_abs_fraud": 0.33776,
+      "mean_fraud": 0.23059,
+      "mean_normal": -0.00399,
+      "rank": 5
+    },
+    {
+      "feature": "V19",
+      "mean_abs_all": 0.20225,
+      "mean_abs_fraud": 0.22728,
+      "mean_fraud": 0.1742,
+      "mean_normal": 0.00096,
+      "rank": 6
+    },
+    {
+      "feature": "Time",
+      "mean_abs_all": 0.19205,
+      "mean_abs_fraud": 0.18985,
+      "mean_fraud": 0.03019,
+      "mean_normal": 0.00124,
+      "rank": 7
+    },
+    {
+      "feature": "V11",
+      "mean_abs_all": 0.15342,
+      "mean_abs_fraud": 0.51333,
+      "mean_fraud": 0.48184,
+      "mean_normal": 0.00371,
+      "rank": 8
+    },
+    {
+      "feature": "V10",
+      "mean_abs_all": 0.15328,
+      "mean_abs_fraud": 1.59867,
+      "mean_fraud": 1.55113,
+      "mean_normal": -0.00065,
+      "rank": 9
+    },
+    {
+      "feature": "V26",
+      "mean_abs_all": 0.14881,
+      "mean_abs_fraud": 0.21903,
+      "mean_fraud": 0.06964,
+      "mean_normal": 0.00657,
+      "rank": 10
+    },
+    {
+      "feature": "V21",
+      "mean_abs_all": 0.14477,
+      "mean_abs_fraud": 0.3101,
+      "mean_fraud": 0.26788,
+      "mean_normal": 0.00495,
+      "rank": 11
+    },
+    {
+      "feature": "V24",
+      "mean_abs_all": 0.13373,
+      "mean_abs_fraud": 0.15507,
+      "mean_fraud": 0.02927,
+      "mean_normal": 0.00165,
+      "rank": 12
+    },
+    {
+      "feature": "V18",
+      "mean_abs_all": 0.13135,
+      "mean_abs_fraud": 0.12778,
+      "mean_fraud": 0.03972,
+      "mean_normal": 0.00082,
+      "rank": 13
+    },
+    {
+      "feature": "V3",
+      "mean_abs_all": 0.12886,
+      "mean_abs_fraud": 0.4419,
+      "mean_fraud": 0.4311,
+      "mean_normal": -0.0022,
+      "rank": 14
+    },
+    {
+      "feature": "V6",
+      "mean_abs_all": 0.12719,
+      "mean_abs_fraud": 0.13527,
+      "mean_fraud": 0.05448,
+      "mean_normal": 0.00536,
+      "rank": 15
+    },
+    {
+      "feature": "V28",
+      "mean_abs_all": 0.12611,
+      "mean_abs_fraud": 0.28209,
+      "mean_fraud": -0.14253,
+      "mean_normal": -6e-05,
+      "rank": 16
+    },
+    {
+      "feature": "V16",
+      "mean_abs_all": 0.12333,
+      "mean_abs_fraud": 0.72426,
+      "mean_fraud": 0.67016,
+      "mean_normal": 0.00104,
+      "rank": 17
+    },
+    {
+      "feature": "V7",
+      "mean_abs_all": 0.12314,
+      "mean_abs_fraud": 0.83122,
+      "mean_fraud": 0.74979,
+      "mean_normal": 0.00122,
+      "rank": 18
+    },
+    {
+      "feature": "V22",
+      "mean_abs_all": 0.12038,
+      "mean_abs_fraud": 0.19108,
+      "mean_fraud": 0.05596,
+      "mean_normal": 0.00071,
+      "rank": 19
+    },
+    {
+      "feature": "V20",
+      "mean_abs_all": 0.11725,
+      "mean_abs_fraud": 0.17369,
+      "mean_fraud": 0.03695,
+      "mean_normal": 0.00285,
+      "rank": 20
+    },
+    {
+      "feature": "V2",
+      "mean_abs_all": 0.1161,
+      "mean_abs_fraud": 0.2016,
+      "mean_fraud": -0.14437,
+      "mean_normal": 0.00042,
+      "rank": 21
+    },
+    {
+      "feature": "V15",
+      "mean_abs_all": 0.11538,
+      "mean_abs_fraud": 0.16533,
+      "mean_fraud": 0.02068,
+      "mean_normal": 0.00035,
+      "rank": 22
+    },
+    {
+      "feature": "V13",
+      "mean_abs_all": 0.11229,
+      "mean_abs_fraud": 0.15363,
+      "mean_fraud": 0.03844,
+      "mean_normal": 0.00085,
+      "rank": 23
+    },
+    {
+      "feature": "V5",
+      "mean_abs_all": 0.11061,
+      "mean_abs_fraud": 0.12829,
+      "mean_fraud": -0.04658,
+      "mean_normal": -0.00173,
+      "rank": 24
+    },
+    {
+      "feature": "V9",
+      "mean_abs_all": 0.10383,
+      "mean_abs_fraud": 0.17257,
+      "mean_fraud": 0.14473,
+      "mean_normal": 0.00074,
+      "rank": 25
+    },
+    {
+      "feature": "V27",
+      "mean_abs_all": 0.10046,
+      "mean_abs_fraud": 0.13804,
+      "mean_fraud": 0.02488,
+      "mean_normal": 0.00449,
+      "rank": 26
+    },
+    {
+      "feature": "V1",
+      "mean_abs_all": 0.09785,
+      "mean_abs_fraud": 0.1221,
+      "mean_fraud": 0.01813,
+      "mean_normal": 0.00972,
+      "rank": 27
+    },
+    {
+      "feature": "V17",
+      "mean_abs_all": 0.08867,
+      "mean_abs_fraud": 1.07113,
+      "mean_fraud": 1.0345,
+      "mean_normal": 0.00018,
+      "rank": 28
+    },
+    {
+      "feature": "V25",
+      "mean_abs_all": 0.0886,
+      "mean_abs_fraud": 0.11976,
+      "mean_fraud": 0.00404,
+      "mean_normal": -0.00076,
+      "rank": 29
+    },
+    {
+      "feature": "V23",
+      "mean_abs_all": 0.08171,
+      "mean_abs_fraud": 0.1214,
+      "mean_fraud": 0.02035,
+      "mean_normal": -0.00103,
+      "rank": 30
+    }
+  ],
+  "cases": [
+    {
+      "case": "가장 확실히 잡은 사기",
+      "row": 41828,
+      "fold": 3,
+      "label": 1,
+      "score": 0.999971,
+      "raw_score": 10.4457,
+      "base_value": -12.7211,
+      "top_features": [
+        {
+          "feature": "V14",
+          "value": -8.2256,
+          "shap": 8.5474
+        },
+        {
+          "feature": "V4",
+          "value": 5.3402,
+          "shap": 2.8947
+        },
+        {
+          "feature": "V12",
+          "value": -7.3467,
+          "shap": 2.3426
+        },
+        {
+          "feature": "V10",
+          "value": -4.4663,
+          "shap": 2.0423
+        },
+        {
+          "feature": "V17",
+          "value": -8.8158,
+          "shap": 1.5002
+        },
+        {
+          "feature": "V7",
+          "value": -4.3887,
+          "shap": 1.2628
+        },
+        {
+          "feature": "V16",
+          "value": -6.7729,
+          "shap": 0.9891
+        },
+        {
+          "feature": "V11",
+          "value": 3.9698,
+          "shap": 0.6799
+        }
+      ],
+      "rest_shap": 2.9078
+    },
+    {
+      "case": "기준점 바로 아래로 놓친 사기",
+      "row": 16808,
+      "fold": 3,
+      "label": 1,
+      "score": 0.34719,
+      "raw_score": -0.6314,
+      "base_value": -12.7211,
+      "top_features": [
+        {
+          "feature": "V4",
+          "value": 3.3618,
+          "shap": 2.806
+        },
+        {
+          "feature": "V17",
+          "value": -5.8412,
+          "shap": 2.536
+        },
+        {
+          "feature": "V12",
+          "value": -3.8348,
+          "shap": 2.2456
+        },
+        {
+          "feature": "V14",
+          "value": -3.1822,
+          "shap": 1.9463
+        },
+        {
+          "feature": "V10",
+          "value": -3.6514,
+          "shap": 1.2548
+        },
+        {
+          "feature": "Amount",
+          "value": 730.86,
+          "shap": 0.9075
+        },
+        {
+          "feature": "V16",
+          "value": -2.9543,
+          "shap": 0.8407
+        },
+        {
+          "feature": "V28",
+          "value": 0.2561,
+          "shap": -0.802
+        }
+      ],
+      "rest_shap": 0.3548
+    },
+    {
+      "case": "가장 크게 놓친 사기",
+      "row": 68371,
+      "fold": 4,
+      "label": 1,
+      "score": 1e-06,
+      "raw_score": -13.6408,
+      "base_value": -12.7001,
+      "top_features": [
+        {
+          "feature": "V15",
+          "value": 0.9483,
+          "shap": -0.3718
+        },
+        {
+          "feature": "V14",
+          "value": -0.0078,
+          "shap": -0.2717
+        },
+        {
+          "feature": "V19",
+          "value": -0.0645,
+          "shap": -0.2609
+        },
+        {
+          "feature": "V12",
+          "value": 0.6875,
+          "shap": -0.246
+        },
+        {
+          "feature": "V4",
+          "value": 0.9016,
+          "shap": 0.2368
+        },
+        {
+          "feature": "Amount",
+          "value": 1.18,
+          "shap": 0.2099
+        },
+        {
+          "feature": "V13",
+          "value": 1.5747,
+          "shap": -0.1777
+        },
+        {
+          "feature": "V11",
+          "value": -0.8767,
+          "shap": -0.1448
+        }
+      ],
+      "rest_shap": 0.0854
+    },
+    {
+      "case": "가장 강한 오경보",
+      "row": 119616,
+      "fold": 0,
+      "label": 0,
+      "score": 0.999754,
+      "raw_score": 8.3119,
+      "base_value": -12.6028,
+      "top_features": [
+        {
+          "feature": "V14",
+          "value": -7.1096,
+          "shap": 8.2281
+        },
+        {
+          "feature": "V4",
+          "value": 3.8028,
+          "shap": 2.7937
+        },
+        {
+          "feature": "V10",
+          "value": -5.622,
+          "shap": 1.9109
+        },
+        {
+          "feature": "V17",
+          "value": -12.1293,
+          "shap": 1.606
+        },
+        {
+          "feature": "V12",
+          "value": -7.1045,
+          "shap": 1.5556
+        },
+        {
+          "feature": "V16",
+          "value": -7.2671,
+          "shap": 1.1608
+        },
+        {
+          "feature": "V7",
+          "value": -4.8896,
+          "shap": 1.0171
+        },
+        {
+          "feature": "Amount",
+          "value": 109.9,
+          "shap": 0.7454
+        }
+      ],
+      "rest_shap": 1.8971
+    }
+  ],
+  "frauds_above_threshold": 379,
+  "normals_above_threshold": 22
+}
