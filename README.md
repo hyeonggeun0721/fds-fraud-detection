@@ -15,6 +15,7 @@
 | 라벨이 적을 때 | 확인된 사기 **8건(2%)**만으로 LightGBM 0.514 > 깨끗한 정상으로 학습한 오토인코더 0.474 |
 | 과거로 미래 예측 | 같은 시험지로 비교하면 '과거만 학습'의 손해 ≈ 0 (0.782 vs 0.783). 처음 본 차이(−0.05)는 테스트 구간 차이 |
 | 판단 근거 (SHAP) | 사기 판정은 V14가 압도(사기 거래 평균 +6.3). 가장 강한 오경보는 잡은 사기와 근거가 같음 |
+| DB 연동 운영 (PostgreSQL) | 최소권한 채점 계정이 새 구간 56,746건 채점 → 경보 56건(사기 53, 오경보 3), 재현율 71.6%. 재현율 80%면 오경보 29건, 90%면 1,220건 |
 
 ![정밀도-재현율 곡선](reports/figures/06_pr_curve_tree_model.png)
 
@@ -48,6 +49,9 @@
 | 4-1 | 과거로 학습해 미래를 맞히면? | 시간순 전진 검증 0.788 vs 같은 크기 무작위 0.854. Time 처리(그대로·제거·하루 중 시각)는 차이 없음 | 16 |
 | 4-1b | 그 차이는 정말 시간 순서 때문인가? | 테스트 구간을 똑같이 맞추면 차이 ≈ 0(0.782 vs 0.783) → 차이는 구간마다 다른 사기 비율·난이도 때문. 이틀치 데이터에서는 드리프트가 측정되지 않음 | 16 |
 | 4-2 | 모델은 무엇을 보고 판단하나? (SHAP) | 전체 1위 V4, 사기에서는 V14가 압도. V17은 전체 28위지만 사기에서 6위. Time은 7위지만 방향성이 없어 빼도 성능 같음 | 17, 18 |
+| 5-1 | 탐지 결과를 DB에 어떻게 담나? | PostgreSQL `fds` 스키마(거래·라벨·실행 기록·점수). 라벨은 분리하고 채점 계정은 접근 불가 → 라벨 누수를 권한으로 차단. COPY 적재 + DB 쪽 검산 | – |
+| 5-2 | 과거로 학습한 모델이 새 거래를 채점하면? | 구간 0~3 학습, 구간 4를 시간순 5,000건씩 채점·저장(점수·경보·SHAP 상위 3개 근거). PR-AUC 0.8065로 4-1과 동일. 과거에서 정한 기준점이 새 구간에서는 너무 엄격(재현율 71.6% < 목표 80%) | – |
+| 5-2b | 운영 중 기준점을 어떻게 감시하나? | SQL 뷰·함수로 경보 대기열, 시간대별 성능, '목표 재현율에 필요한 기준점'을 바로 확인. 80% → 오경보 29건, 90% → 1,220건(절벽) | – |
 
 ## 문제 해결 기록
 
@@ -57,6 +61,7 @@
 - **기준점 고르기의 누수 방지**: 테스트 데이터를 보지 않도록 학습 조각 안에서 한 번 더 교차검증한 점수로 기준점을 고름 (2-4)
 - **라이브러리 충돌로 인한 강제 종료**: LightGBM과 PyTorch를 한 프로그램에서 불러오면 서로 다른 OpenMP(libomp) 3개가 함께 올라가 Segmentation fault 발생. 오류 보고서로 원인을 확인하고, 오토인코더 스크립트는 PyTorch만 쓰고 LightGBM·IF 점수는 저장된 파일에서 읽도록 분리 (3-2)
 - **잘못된 비교 바로잡기**: 시간순 분할 점수가 무작위보다 낮게 나왔지만, 대조군의 테스트 데이터가 달라 원인을 단정하지 않고 '같은 시험지' 대조 실험을 추가해 차이가 시간 순서가 아니라 테스트 구간 때문임을 확인 (4-1b)
+- **라벨 누수를 DB 권한으로 차단**: 채점 계정은 라벨 테이블을 읽을 수 없고, 라벨을 쓰는 뷰·함수는 `security_invoker`로 만들어 '뷰를 통한 우회'까지 막음. 학습·채점 구간이 겹치는 실행 기록은 CHECK 제약이 거부 (5-1, 5-2b)
 - **실험 환경 이전**: 인텔 호환 모드 Python 3.9 → 애플 실리콘 Python 3.12로 옮기고, 전 단계를 다시 실행해 결과가 같음을 확인 (3-1 이후)
 
 ## 실행
@@ -86,6 +91,14 @@ python scripts/10a_labels_lightgbm.py data_raw/creditcard.csv reports   # 3-3a �
 python scripts/10b_labels_autoencoder.py data_raw/creditcard.csv reports # 3-3a 라벨 부족 (오토인코더)
 python scripts/11_time_split.py       data_raw/creditcard.csv reports   # 4-1 시간순 전진 검증 + 4-1b (약 2분)
 python scripts/12_shap.py             data_raw/creditcard.csv reports   # 4-2 SHAP (그래프용 shap_oof.npz도 저장)
+
+# 5단계: PostgreSQL 연동 (보안 DB 과제와 같은 서버, 별도 스키마 fds)
+psql -d security_db -v ON_ERROR_STOP=1 -f db/F001_fds_schema.sql      # 스키마·채점 계정
+python scripts/13_load_db.py data_raw/creditcard.csv --db security_db   # 거래·라벨 적재 (COPY + 검산)
+python scripts/14_score_batch.py --db security_db                       # 학습(구간 0~3) → 채점(구간 4) → 평가
+psql -d security_db -v ON_ERROR_STOP=1 -f db/F002_fds_monitoring.sql  # 경보 대기열·성능 뷰·기준점 점검
+psql -d security_db -c "select * from fds.threshold_check(0.8);"
+# 되돌리기: psql -d security_db -f db/F000_drop_fds.sql
 ```
 
 그래프는 결과 JSON으로 다시 그릴 수 있습니다: `python scripts/plot_tree_model.py reports` 등 `plot_*.py`. (`plot_isolation_forest.py`·`plot_shap.py`는 두 번째 인자로 `data_raw/creditcard.csv`)
@@ -98,9 +111,13 @@ LightGBM과 PyTorch는 같은 프로그램에서 함께 불러오면 강제 종�
 ```
 scripts/
   fds_common.py        데이터 로드(중복 제거), 5겹 분할, 지표, LightGBM 설정, 라벨 숨기기 — 2-2부터 공통 사용
-  01_ ~ 12_*.py        단계별 실험 (08·09·10b는 PyTorch만, 나머지는 PyTorch 없이)
+  01_ ~ 14_*.py        단계별 실험 (13·14는 PostgreSQL 연동) (08·09·10b는 PyTorch만, 나머지는 PyTorch 없이)
   compare_results.py   두 결과 폴더 비교 (환경 변경 후 재현 확인)
   plot_*.py            결과 그래프
+db/
+  F001_fds_schema.sql      fds 스키마: transactions, fraud_labels, model_runs, scores + 최소권한 채점 계정
+  F002_fds_monitoring.sql  경보 대기열·실행별 성능 뷰, threshold_check()
+  F000_drop_fds.sql        fds 스키마 완전 제거 (되돌리기)
 reports/
   PROJECT_LOG.md       진행 기록 (현재 상태 + 날짜별 히스토리)
   *_results.json       단계별 결과
@@ -131,10 +148,11 @@ data_raw/              원본 데이터 (저장소에 포함하지 않음)
 
 3. ~~비지도 이상탐지~~ — 완료 (아래 '3단계 결론')
 4. ~~시간 순서 분할 + 설명가능성(SHAP)~~ — 완료 (아래 '4단계 결론')
-5. 보안 DB 프로젝트 연동 — 탐지 점수 적재, 알림·대시보드
+5. 보안 DB 프로젝트 연동 — 5-1~5-2b 완료(스키마·적재·배치 채점·운영 뷰). 남은 것: 경보를 보안 이벤트·알림 파이프라인과 SOC 대시보드에 연결
 6. 적대적 공격(탐지 회피) 실험
 
 ## 환경
 
-- macOS, 애플 실리콘(arm64) **Python 3.12** (Homebrew). `requirements.txt`의 고정 버전: numpy 2.5.4, pandas 3.1.1, scikit-learn 1.9.1, matplotlib 3.11.2, lightgbm 4.7.0, imbalanced-learn 0.14.2, torch 2.15.0
+- macOS, 애플 실리콘(arm64) **Python 3.12** (Homebrew). `requirements.txt`의 고정 버전: numpy 2.5.4, pandas 3.1.1, scikit-learn 1.9.1, matplotlib 3.11.2, lightgbm 4.7.0, imbalanced-learn 0.14.2, torch 2.15.0, psycopg 3.3.6
+- PostgreSQL 15 (Homebrew). 5단계는 보안 DB 과제와 같은 서버의 `security_db`에 별도 스키마 `fds`로 두고 과제 테이블(public)은 건드리지 않음
 - 2026-11-05에 인텔 호환 모드 Python 3.9 환경에서 옮겨 왔고, 그때까지의 1~3-1단계 스크립트를 다시 실행해 **기존 결과와 같음**을 확인했습니다(점수 폭주로 무효 처리한 2-3 클래스 가중치만 0.0003 차이)
