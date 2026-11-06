@@ -52,3 +52,22 @@ LGBM_PARAMS = dict(
     random_state=0,
     verbose=-1,
 )
+
+
+# 3-3a에서 사용: 학습 조각의 사기 라벨 중 일부만 '확인된 것'으로 남긴다
+LABEL_FRACS = [1.0, 0.5, 0.25, 0.1, 0.05, 0.02]
+
+
+def hide_labels(y_train, frac, seed):
+    """사기 라벨을 frac 비율만 남기고, 나머지 사기는 0(정상)으로 바꾼 '관측된 라벨'을 돌려준다.
+
+    - 확인 안 된 사기는 실제 현장처럼 정상으로 섞여 있다고 가정한다.
+    - 같은 seed면 사기 순서를 한 번만 섞고 앞에서부터 남기므로, 10%에 남은 사기는 25%·50%에도 모두 포함된다.
+    - LightGBM 스크립트와 오토인코더 스크립트가 같은 seed를 쓰면 정확히 같은 사기가 숨겨진다.
+    """
+    y_obs = y_train.copy()
+    fraud_pos = np.where(y_train == 1)[0]
+    order = np.random.default_rng(seed).permutation(fraud_pos)
+    n_keep = max(1, int(round(frac * len(fraud_pos))))
+    y_obs[order[n_keep:]] = 0
+    return y_obs
